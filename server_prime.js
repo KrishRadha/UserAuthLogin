@@ -44,11 +44,11 @@
 
 
 var express=require('express'),http = require('http');  // requiring expressjs
-var mongojs=require('mongojs');  // requiring mongojs
+var db=require('mongojs').connect("mongodb://champrakri:Iamthegod1@ds139278.mlab.com:39278/heroku_0tcxsgmn",['tags','packets','users']);  // requiring mongojs
 var funcz = require('./cust_server.js');// requiring custom_js funcs
 var xssFilters = require('xss-filters');
 var sanitize = require('mongo-sanitize');
-var db=mongojs('silimantic',['tags','packets','users']);// database is indianpanther ,tables are in array
+//var db=mongojs('silimantic',['tags','packets','users']);// database is indianpanther ,tables are in array
 var bodyparser=require('body-parser');//body parser for parsin the body yo
 var validator=require('validator');
 var moment = require('moment');
@@ -72,6 +72,20 @@ app.use(bodyparser.urlencoded({extended:true}));
 
 var server = http.createServer(app);
 
+/* ------------------------------------------------ DB CONNECTION  ------------------------------------------------------*/
+
+var MongoClient = require('mongodb').MongoClient
+  , assert = require('assert');
+
+// Connection URL
+var url = 'mongodb://localhost:27017/myproject';
+// Use connect method to connect to the Server
+MongoClient.connect(url, function(err, db) {
+  assert.equal(null, err);
+  console.log("Connected correctly to server");
+
+  db.close();
+});
 
 /*--------------------------------------------------------APP WORKING PARAMS---------------------------------------------------------------------*/
 

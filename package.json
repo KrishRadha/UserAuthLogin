@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-      "start":"node server_prime.js"    
+    "start": "node server_prime.js"
   },
   "keywords": [
     "data"
@@ -20,6 +20,7 @@
     "ejs": "^2.5.5",
     "express": "^4.14.0",
     "moment": "^2.16.0",
+    "mongodb": "^2.2.16",
     "mongojs": "^2.4.0",
     "xss-filters": "^1.2.7"
   }
