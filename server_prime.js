@@ -427,7 +427,7 @@ var domain = 'appa79187c642a346eca4b910d9d840dbc3.mailgun.org';
 var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
  
 var data = {
-  from: 'ChatPackets Auth',
+  from: 'ChatPacketsAuth<cp@chatpackets.com>',
   to: user.email,
   subject: 'Verify Your Chat Packets account',
   text: 'Please verify your account by visiting the following link.  '+url
