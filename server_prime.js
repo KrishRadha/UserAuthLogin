@@ -955,7 +955,7 @@ app.get('/verify',function(req,res){
 
 /*------------------------------------------------SERVER STUFF ENDS----------------------------------------------*/
 //app.listen(3000);
-server.listen(3000,'0.0.0.0');
+server.listen(process.env.PORT||5000);
 
 console.log("Server running on port 8000");
 
