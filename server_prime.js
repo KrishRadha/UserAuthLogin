@@ -420,7 +420,7 @@ app.post('/register',function(req,res){
     
             else{
  
-           var url=req.headers.host+'/verify?email='+user.email+'&vercode='+user.vercode;
+           var url= req.headers.host+'/verify?email='+user.email+'&vercode='+user.vercode;
                 
                 var api_key = 'key-82e44fbcb782eb183b249a2312d04f95';
 var domain = 'appa79187c642a346eca4b910d9d840dbc3.mailgun.org';
