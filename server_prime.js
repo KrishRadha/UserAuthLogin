@@ -140,7 +140,7 @@ app.use(function(req,res,next)
     }
     
 });
-app.use(handle403
+app.use(handle403);
 app.use(handle404);
 app.use(handle503);
 
