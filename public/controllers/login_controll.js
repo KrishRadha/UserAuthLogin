@@ -15,6 +15,14 @@ loginapp.controller('LoginCont',['$scope','$http', '$compile','$sce',
         {
             window.location ='/fourothree';
         }
+        if(response=='404error')
+        {
+            window.location ='/fourofour';
+        }
+        if(response=='503error')
+        {
+            window.location ='/fiveothree';
+        }
         console.log(response);
         
              $(document).ready(function(){

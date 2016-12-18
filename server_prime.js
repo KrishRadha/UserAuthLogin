@@ -140,8 +140,9 @@ app.use(function(req,res,next)
     }
     
 });
-app.use(handle403);
+app.use(handle403
 app.use(handle404);
+app.use(handle503);
 
 function requireLogin(req,res,next)
 {
@@ -165,6 +166,10 @@ function handle403(err, req, res, next) {
 function handle404(err, req, res, next) {
   if (err.status !== 404) return next();
   res.send('404error');
+};
+function handle503(err, req, res, next) {
+  if (err.status !== 503) return next();
+  res.send('503error');
 };
 
 
