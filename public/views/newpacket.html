@@ -1,0 +1,177 @@
+<!DOCTYPE HTML>
+
+<html lang="en" ng-app="newinkapp">
+  <head>
+    <meta charset="utf-8">
+
+
+    <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+       <title> Dashboard </title>
+            <!-- Latest compiled and minified CSS -->
+       <!-- Latest compiled and minified CSS -->
+
+
+   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" type="text/css">
+<link rel="stylesheet" href="resources\dist\css\vendor\bootstrap\css\bootstrap.min.css" type="text/css">
+    <!--    <link rel="stylesheet" href="resources/css/ipel.css" type="text/css"> -->
+    <link rel="stylesheet" href="resources/dist/css/flat-ui.css" type="text/css">
+
+        
+  
+
+
+      <script src="resources/js/angular.js" ></script>
+        <!-- Latest compiled and minified JavaScript -->
+        <!-- JQUERY-->
+
+
+
+
+
+
+
+
+    <script src="resources/dist/js/vendor/jquery.min.js"></script>
+    <script src="resources/dist/js/vendor/video.js"></script>
+    <script src="resources/dist/js/flat-ui.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Fredoka+One' rel='stylesheet' type='text/css'>
+        <script src="resources/js/notebook.js"></script>
+
+
+
+    <script src="controllers/newpacket_controll.js"></script>
+
+
+    </head>
+<body style="background-color:#FFFFFF;" ng-controller="Newpostcont">
+       <!-------------------------------------------------------------------------------------------------------------------------------->
+<input id="csrf_token" type="hidden" name="_csrf" value="<%= csrfToken %>" />
+          <!-- ------------------------------------------------- HEADER ------------------------------------------------->
+
+      <div class="row demo-row" >
+
+
+
+        <div class="col-xs-12">
+          <nav class="navbar navbar-inverse navbar-embossed" style="border-radius:0px" role="navigation">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
+                <span class="sr-only">Toggle navigation</span>
+              </button>
+              <a class="navbar-brand" href="#">Chat Packets</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse-01">
+
+               <form class="navbar-form navbar-left" action="#" role="search">
+                <div class="form-group">
+
+                  <div class="input-group">
+                    <input class="form-control" id="navbarInput-01" type="search" placeholder="Search"/>
+                    <span class="input-group-btn">
+                      <button type="submit" style="background:#E74C3C" class="btn"><span class="fui-search"></span></button>
+                    </span>
+                  </div>
+                </div>
+              </form>
+
+                <ul class="nav navbar-nav navbar-right">
+                 <!--   <li><a href="/newview"><span class="fui-new"></span> &nbsp;Create an Inkoview</a></li> -->
+                <li><a href="#fakelink"><span class="fui-home"></span></a></li>
+
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <%= user.name %> <b class="caret"></b></a>
+                  <span class="dropdown-arrow"></span>
+                  <ul class="dropdown-menu">
+                      <li><a href="#">Notifications</a></li>
+                    <li><a href="#">My Profile</a></li>
+                    <li><a href="#">Settings</a></li>
+                    <li><a href="#">Messages</a></li>
+
+
+                    <li class="divider"></li>
+                    <li><a href="/logout">Logout</a></li>
+                  </ul>
+                </li>
+
+               </ul>
+
+            </div><!-- /.navbar-collapse -->
+          </nav><!-- /navbar -->
+        </div>
+      </div> <!-- /row -->
+
+          <!-- ------------------------------------------------- HEADER ------------------------------------------------->
+    <form>
+
+
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+
+
+
+
+
+    <div class="row" id="NewInkpanel">
+        <div class="col-xs-2" ></div>
+        <div class="col-xs-9">
+    <label> <h5>Enter the Chat Packets Id  </h5></label>
+         <input class="form-control" ng-model="item.cpid" id="item_url" type="text" placeholder="You can find the Chat Packet Id on their respective profile."/>
+    <hr/>
+            <h4>Type Your message to be included the packet.</h4>
+        <div class="another chat_packet" data-placeholder="" contenteditable="true" style="border:none" id="chat_packet"></div>
+            <input type="text" ng-model="item.chatpacket" id="buffer_store_person" style="display:none"/>
+            <br/>
+            <hr/>
+
+            <div class="col-xs-3">
+          <a href="" ng-click="Submit_Item()" class="btn btn-block btn-lg btn-primary">Send the Packet</a>
+                <div id="person_error"> </div>
+        </div>
+
+             <div class="col-xs-3">
+
+            </div>
+        </div>
+
+
+        <div class="col-xs-1"></div>
+
+    </div>
+
+
+
+   </form>
+
+    <script>
+
+
+
+        //-----------------------------------------------------------------------
+
+
+
+
+
+
+
+        $(function () {
+        $( "#chat_packet" ).on('input',function() {
+
+
+
+  $("#buffer_store_person").val($( "#chat_packet" ).html());
+           // $("#buffer_store_person").trigger('input');
+            angular.element($("#buffer_store_person")).triggerHandler('input');
+
+
+        });});
+
+</script>
+
+
+
+
+    </body>
+
+
+
+</html>

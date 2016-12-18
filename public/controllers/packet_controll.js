@@ -17,8 +17,21 @@ function Refresh_Chat_Packets()
             message_request.otheruser=$("#otherusername").val();
             message_request.latest_update_id=latest_update_id;
             console.log(latest_update_id);
-            
+             message_request._csrf=$("#csrf_token").value;
             $http.post('/packets',message_request).success(function(response){
+                
+                 if(response=='403error')
+        {
+            window.location ='/fourothree';
+        }
+        if(response=='404error')
+        {
+            window.location ='/fourofour';
+        }
+        if(response=='503error')
+        {
+            window.location ='/fiveothree';
+        }
             if(response.nothing=='')
                  {
                      
@@ -54,7 +67,21 @@ function Refresh_Chat_Packets()
          $scope.item.cpid=$("#otherusername").val();
          console.log($scope.item);
       //   $scope.review.type='person';
+        $scope.item._csrf=$("#csrf_token").value;
          $http.post('/newpacket',$scope.item).success(function(response){
+             
+                       if(response=='403error')
+        {
+            window.location ='/fourothree';
+        }
+        if(response=='404error')
+        {
+            window.location ='/fourofour';
+        }
+        if(response=='503error')
+        {
+            window.location ='/fiveothree';
+        }
              
              $(document).ready(function(){
                  

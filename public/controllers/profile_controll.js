@@ -27,7 +27,18 @@ profileapp.controller('ProfileCont',['$scope','$http', '$compile','$sce',
             
              $http.post('/profile',{description:description}).success(function(response){
              
-             
+              if(response=='403error')
+        {
+            window.location ='/fourothree';
+        }
+        if(response=='404error')
+        {
+            window.location ='/fourofour';
+        }
+        if(response=='503error')
+        {
+            window.location ='/fiveothree';
+        }
              // CHECK IF DESCRIPTION IS OF SAME USER AS WHO IS POSTING THIS? FOR NW POSTING DIRECTLY IN LOGGED IN USER.
                  
                   $(document).ready(function(){

@@ -44,11 +44,11 @@
 
 
 var express=require('express'),http = require('http');  // requiring expressjs
-var db=require('mongojs').connect("mongodb://champrakri:Iamthegod1@ds139278.mlab.com:39278/heroku_0tcxsgmn",['tags','packets','users']);  // requiring mongojs
+var mongojs=require('mongojs');  // requiring mongojs
 var funcz = require('./cust_server.js');// requiring custom_js funcs
 var xssFilters = require('xss-filters');
 var sanitize = require('mongo-sanitize');
-//var db=mongojs('silimantic',['tags','packets','users']);// database is indianpanther ,tables are in array
+var db=mongojs("mongodb://champrakri:Iamthegod1@ds139278.mlab.com:39278/heroku_0tcxsgmn",['tags','packets','users']);// database is indianpanther ,tables are in array
 var bodyparser=require('body-parser');//body parser for parsin the body yo
 var validator=require('validator');
 var moment = require('moment');
@@ -74,18 +74,6 @@ var server = http.createServer(app);
 
 /* ------------------------------------------------ DB CONNECTION  ------------------------------------------------------*/
 
-var MongoClient = require('mongodb').MongoClient
-  , assert = require('assert');
-
-// Connection URL
-var url = 'mongodb://localhost:27017/myproject';
-// Use connect method to connect to the Server
-MongoClient.connect(url, function(err, db) {
-  assert.equal(null, err);
-  console.log("Connected correctly to server");
-
-  db.close();
-});
 
 /*--------------------------------------------------------APP WORKING PARAMS---------------------------------------------------------------------*/
 
@@ -423,7 +411,7 @@ app.post('/register',function(req,res){
         //--------------------------------------------------
         db.users.insert(user,function(err,doc){
     
-    console.log(user);
+    //console.log(user);
             if(err)
             {
                 error.push('We have problems with the server. Please try after some time');
@@ -434,27 +422,20 @@ app.post('/register',function(req,res){
  
            var url=req.headers.host+'/verify?email='+user.email+'&vercode='+user.vercode;
                 
-                // SEND VERIFICATION EMAIL
-                
-                /* --------------- SEND GRID SAMPLE * ----------------*
-                sendgrid.send(
-        {
-            to:'rkavulru@gmail.com',
-            from:'test@mail.indianpanther.com',
-            subject:'Indian Panther Admin test',
-            text:'Verify your account on Indian Panther by visiting the following link:'+url
-        },function(err,json){
-        
-        if(err){
-            error.push('MAILPROB');
-            return res.json({error:error});
-        }
-            else{
-                 var succ ={done:"GO"};
-            res.json(succ);
-            }
-        }
-        ); /* --------------- SEND GRID SAMPLE * ----------------*/
+                var api_key = 'key-82e44fbcb782eb183b249a2312d04f95';
+var domain = 'appa79187c642a346eca4b910d9d840dbc3.mailgun.org';
+var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
+ 
+var data = {
+  from: 'ChatPackets Auth',
+  to: user.email,
+  subject: 'Verify Your Chat Packets account',
+  text: 'Please verify your account by visiting the following link.  '+url
+};
+ 
+mailgun.messages().send(data, function (error, body) {
+  console.log(body);
+});
                 var succ ={done:"GO"};
             res.json(succ);
                
@@ -927,7 +908,7 @@ app.get('/verify',function(req,res){
          }
              else
              {
-                 res.render("verify.html",{error:'VERIFIED. Vistit http://indianpanther.com/login to discover the world'});
+                 res.render("verify.html",{error:'VERIFIED. Vistit Chat Packets now  '});
              }
          
          }

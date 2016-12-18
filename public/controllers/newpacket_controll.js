@@ -15,9 +15,23 @@ newinkapp.controller('Newpostcont',['$scope','$http', '$compile','$sce',
      $scope.Submit_Item=function(){ 
         // console.log('fired');
          console.log($scope.item);
-        
+         $scope.item._csrf=$("#csrf_token").value;
       //   $scope.review.type='person';
          $http.post('/newpacket',$scope.item).success(function(response){
+             
+              if(response=='403error')
+        {
+            window.location ='/fourothree';
+        }
+        if(response=='404error')
+        {
+            window.location ='/fourofour';
+        }
+        if(response=='503error')
+        {
+            window.location ='/fiveothree';
+        }
+             
              
              $(document).ready(function(){
                  
